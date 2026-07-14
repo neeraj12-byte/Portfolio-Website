@@ -1,6 +1,6 @@
 # Portfolio Website — Project Context
 > Read this file at the start of any session to restore full context.
-> Last updated: July 5, 2026
+> Last updated: July 13, 2026
 
 ---
 
@@ -11,7 +11,7 @@
 - Master of Engineering Management @ Purdue University (GPA 3.86, May 2027)
 - B.E. Electronics & Instrumentation @ BITS Pilani, India (May 2022)
 - LinkedIn: linkedin.com/in/neeraj-karumanchi/
-- Email: neeraj.karumanchi25@gmail.com
+- Email: neeraj.karumanchi12@gmail.com
 - Phone: +1 (765) 409-0871
 - GitHub: neeraj12-byte
 
@@ -67,7 +67,7 @@ This change was applied globally via sed across all component, data, css, and ht
 - Project cards have **gradient cover** (h-36) + Lucide icon, unique color per project
 - Certifications have **Anthropic orange badge** with italic "A"
 - Education cards have **school color letter badges** (P in Purdue gold, B in BITS navy)
-- AI skills (Claude Code, Agentic AI, MCP Servers) get **terracotta tint** pill to stand out
+- AI skills (Claude Code, Agentic AI, MCP Servers) — bronze tint was removed; all skills now render with the same plain white pill style
 - Testimonials have **large decorative quote mark** at text-7xl, opacity 15%
 - Contact section is **dark charcoal** with Resume as plain underline text (not a button)
 - Bullet points use `text-[#1C1C1E]/25` (NOT terracotta) to reduce accent overuse
@@ -94,6 +94,16 @@ All HEIC files already converted to JPEG. Web-optimized versions (177–436KB) c
 |------|-----|
 | `Professional_photo_web.jpg` | Hero circular photo (compressed from PNG) |
 
+### Testimonials
+| File | Person | Notes |
+|------|--------|-------|
+| `arnav-raj.png` | Arnav Raj | 770×680px, circular photo on black bg, imgStyle: null |
+| `vishesh-bhatt.png` | Vishesh Bhatt | 1076×994px, circular photo on black bg, imgStyle: null |
+| `gandhee-krishna.png` | Gandhee Krishna | 1072×1026px, circular photo on black bg, imgStyle: null |
+| `khushi-bansal.png` | Khushi Bansal | Circular photo outdoors, imgStyle confirmed perfect |
+
+**Known issue**: Arnav/Vishesh/Gandhee PNGs have a black circular border baked into the image. `object-cover` shows this border unevenly on the avatar. The clean fix is to replace them with versions that have a transparent or white background.
+
 ### Life Section — 8 Photos (web-optimized versions used in code)
 | File | Location | Caption in code |
 |------|----------|-----------------|
@@ -114,30 +124,48 @@ All HEIC files already converted to JPEG. Web-optimized versions (177–436KB) c
 
 ---
 
+## Logo Files (`src/assets/logos/`)
+Real image logos used in Experience cards and Hero strip. All imported as ES module URLs via Vite.
+
+| File | Company | bg color used | objectFit |
+|------|---------|--------------|-----------|
+| `apple-logo.jpg` | Apple | `#000000` (black) | cover |
+| `ola-logo.png` | OLA Electric | `#FFFFFF` (white) | contain |
+| `purdue-logo.png` | Purdue University | `#000000` (black) | contain |
+| `bits-logo.webp` | BITS Pilani | `#FFFFFF` (white) | contain |
+| `jsw-logo.png` | JSW Steel | `#FFFFFF` (white) | contain |
+
+`CompanyLogo.jsx` (`src/assets/logos/`) — centralized component with size variants (sm=36px, md=44px, lg=52px) used in Experience cards.
+`LogoChip` — inline component inside Hero.jsx for the hero logo strip only.
+
+---
+
 ## File Structure (current state)
 ```
 Portfolio-Website/
-├── Photos/                         ← all photos (originals + web-optimized *_web.jpg)
+├── Photos/                         ← all photos (originals + web-optimized *_web.jpg + testimonial PNGs)
 ├── public/
 │   ├── favicon.svg                 ← NK monogram
 │   └── Neeraj Karumanchi.pdf       ← resume (copied here so Vite bundles it)
 ├── src/
 │   ├── components/
 │   │   ├── FadeIn.jsx              ← shared scroll animation wrapper
-│   │   ├── SectionHeading.jsx      ← label + serif title + animated terracotta underline
+│   │   ├── SectionHeading.jsx      ← label + serif title + animated bronze underline
 │   │   ├── Navbar.jsx              ← sticky, frosted on scroll, mobile hamburger (44px tap target)
-│   │   ├── Hero.jsx                ← availability pill, name, tagline, photo, logo strip
+│   │   ├── Hero.jsx                ← 2 availability pills, name, tagline, photo, LogoChip logo strip
 │   │   ├── Highlights.jsx          ← 6 stat cards with color top bar + SectionHeading
 │   │   ├── About.jsx               ← narrative + 6 Lucide-icon hobby tiles
-│   │   ├── Experience.jsx          ← timeline (desktop) + flat stack (mobile), 4 primary + 4 secondary
+│   │   ├── Experience.jsx          ← timeline (desktop) + flat stack (mobile), 4 primary + 4 secondary, CompanyLogo
 │   │   ├── Projects.jsx            ← 4 cards with gradient cover + Lucide icons
 │   │   ├── Education.jsx           ← 2 cards with school color badges
-│   │   ├── Skills.jsx              ← pill tags, AI skills tinted terracotta
+│   │   ├── Skills.jsx              ← pill tags, all uniform (no AI tint)
 │   │   ├── Certifications.jsx      ← 4 Anthropic cert cards with descriptions + intro line
 │   │   ├── Life.jsx                ← 3-row photo grid (2-col mobile, 3-col desktop)
-│   │   ├── Testimonials.jsx        ← Embla carousel, 4 quotes, big decorative "
+│   │   ├── Testimonials.jsx        ← useState+AnimatePresence carousel, real photos, text-lg/xl quotes
 │   │   ├── Contact.jsx             ← dark section, availability text, 3 CTAs
 │   │   └── Footer.jsx              ← NK, links, copyright
+│   ├── assets/
+│   │   └── logos/                  ← CompanyLogo.jsx + apple/ola/purdue/bits/jsw logo images
 │   ├── data/
 │   │   ├── highlights.js           ← 6 stat cards
 │   │   ├── experience.js           ← primaryExperience + secondaryExperience
@@ -167,13 +195,21 @@ Portfolio-Website/
 - Frosted bg on scroll
 
 ### 2. Hero
-- **Green availability pill**: "Seeking Fall 2026 Internship" (pulsing dot)
+- **Two green availability pills** (both animate together):
+  1. "Seeking Fall 2026 Internship Opportunities"
+  2. "Seeking Full-time Job Opportunities"
 - Name: Neeraj Karumanchi (serif, responsive)
-- Subtitle: "EPM Intern · Apple · Cupertino, CA"
-- Tagline: "I run programs that ship. From India's fastest-growing EV startup to Apple's Pricing Platform — turning complex, multi-team work into outcomes that actually land."
+- Subtitle: "EPM Intern · Apple · Cupertino, CA" — font `text-[17px]`
+- Tagline: "I run programs that ship. From India's fastest-growing EV startup to Apple's Pricing Platform, turning complex, multi-team work into outcomes that actually land." (em dash removed)
 - CTAs: "See my work →" (dark pill) + "My journey" (ghost pill)
 - Photo: circular, `object-[center_5%]`, 52/64/80 responsive sizes
-- Logo strip: "Worked at" Apple · OLA Electric | "Studied at" Purdue · BITS Pilani
+- **Logo strip with real image logos** — `LogoChip` component (inline in Hero.jsx):
+  - "Worked at": Apple (black bg JPG) · OLA Electric (white bg PNG, `logoBg='#ffffff'` to prevent cream bleed-through)
+  - "Studied at": Purdue University (black bg PNG, `logoBg='#000000'`) · BITS Pilani (white bg WEBP)
+  - Logo icons: `h-[23px] md:h-[27px] w-[23px] md:w-[27px]`, `rounded-[5px]`, `ring-1 ring-[#1C1C1E]/10`
+  - Company name text: `text-[23px] md:text-[27px]` (font-serif, semibold)
+  - Label text ("Worked at" / "Studied at"): `text-[15px]`
+  - Each logo uses `style={{ backgroundColor: logoBg }}` (inline style, NOT Tailwind class) to prevent page cream showing through transparent PNGs
 
 ### 3. Highlights
 - SectionHeading: "By the numbers" / "Impact, at a glance."
@@ -208,7 +244,8 @@ Portfolio-Website/
 
 ### 8. Skills
 - 3 groups: Program Management / Product Management / Technical & AI
-- AI skills (Claude Code, Agentic AI, MCP Servers) styled with terracotta tint
+- `const aiHighlights = new Set()` — empty set, all pills render identically with plain white style
+- Bronze tint on AI skills was removed per user request (looked visually inconsistent)
 
 ### 9. Certifications
 - Intro line: "Anthropic certifications are among the first issued..."
@@ -223,17 +260,22 @@ Portfolio-Website/
 
 ### 11. Testimonials
 - Section bg: `#F8F4E8` (golden cream). Card bg: white, shadow-sm, NO border
-- Heading: "Testimonials" (large serif h2, NOT using SectionHeading component — manually built so subtitle spacing can be controlled)
-  - Animated bronze underline (Framer Motion, same as SectionHeading)
-  - Subtitle: "From the people I've worked with — at OLA Electric, Purdue, and BITS Pilani."
-- Embla carousel: 1 slide visible, full-width (`min-w-full`). Loop enabled.
-- Card structure: `"` mark (text-5xl, ~10% opacity) sits INSIDE the left-bordered div as first child, then quote text below it — gives the blockquote feel from reference image
-- Left border: `border-l-2 border-[#A07640]/40 pl-6` (bronze, on the quote block including the `"`)
-- Author row: 48px dark circle with white initials (no photos available) + name + title. `in →` LinkedIn pill on right (only renders if `t.linkedin` is non-empty string)
-- Navigation: pill-shaped active dot + circle inactive dots (bottom-left) + ← → arrows (bottom-right)
-- DO NOT wrap the Embla ref div in FadeIn — it breaks carousel measurement
-- Reference image: `/Users/neerajkarumanchi/.claude/image-cache/c9c5d33b-1bf9-4d25-8378-5354976a0189/31.png`
-- linkedin field in testimonials.js: currently empty strings. Fill in each person's LinkedIn profile URL to show `in →` button
+- Container: `max-w-6xl` (widened from max-w-4xl for more horizontal breathing room)
+- Uses `SectionHeading` component (label: "Testimonials", title: "What they say.")
+- Subtitle: "From the people I've worked with, at OLA Electric, Purdue, and BITS Pilani."
+- **Carousel**: Embla was removed entirely — replaced with `useState` + Framer Motion `AnimatePresence`
+  - Reason: Embla had initialization/measurement issues that made the section invisible
+  - `prev`/`next` functions cycle index with modulo, `AnimatePresence mode="wait"` handles fade transition
+  - DO NOT bring Embla back
+- Card structure: `"` mark (text-4xl, `#A07640` 50% opacity) + quote text below, inside left-bordered div
+- Left border: `border-l-[3px] border-[#A07640] pl-6`
+- Quote text: `text-lg sm:text-xl`, `leading-[1.85]`
+- Author row: `w-11 h-11 rounded-full overflow-hidden` — real profile photos (see Photos/ below)
+  - Photo rendered with `object-cover` + per-person `imgStyle` for crop positioning
+  - Khushi: `{ objectPosition: 'center 24%', transform: 'scale(2.5)', transformOrigin: 'center 24%' }` — CONFIRMED PERFECT, do not change
+  - Arnav, Vishesh, Gandhee: `imgStyle: null` (plain `object-cover object-top`) — KNOWN ISSUE: PNGs have a black circular border baked in that shows unevenly; clean fix requires source photos without the black border
+- Navigation: pill active dot + circular inactive dots (bottom-left) + ← → circle buttons (bottom-right)
+- `in →` LinkedIn pill only renders if `t.linkedin` is non-empty — all currently empty strings
 
 ### 12. Contact
 - Heading: "Let's make something happen."
@@ -261,17 +303,12 @@ Portfolio-Website/
 ### HIGH PRIORITY
 1. **OG image** — `index.html` references `/Portfolio-Website/og-image.jpg` which doesn't exist. Create a 1200×630px JPG in Figma/Canva (golden cream bg `#F8F4E8`, serif name left, profile photo right, bronze accent `#A07640`) and place in `/public/og-image.jpg`. Without it, LinkedIn/WhatsApp share previews will be broken.
 
-2. **Company logos** — Experience cards and hero logo strip use text only. Real SVG logos would elevate credibility:
-   - Apple: simpleicons.org or inline SVG
-   - OLA Electric: Wikimedia Commons SVG
-   - Purdue: official marcom.purdue.edu "P" wordmark
-   - BITS Pilani: Wikimedia Commons SVG
-   Save to `/src/assets/logos/`, display at 20–24px height, `filter: brightness(0)` for monochrome
-
-3. **Deploy to GitHub Pages** — `npm run deploy` not yet run. Site is only running locally.
+2. **Deploy to GitHub Pages** — Code is committed and pushed to main. Run deploy when ready:
    Command: `export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" && npm run deploy`
 
-4. **Testimonials LinkedIn URLs** — All `linkedin:` fields in `src/data/testimonials.js` are empty strings. Fill in each recommender's LinkedIn profile URL so the `in →` pill button appears.
+3. **Testimonials LinkedIn URLs** — All `linkedin:` fields in `src/data/testimonials.js` are empty strings. Fill in each recommender's LinkedIn profile URL so the `in →` pill button appears.
+
+4. **Testimonial avatar photos (Arnav, Vishesh, Gandhee)** — Current PNGs have a black circular border baked into the image file. With `object-cover`, this border bleeds in unevenly. Fix: replace with versions that have transparent or white background (no pre-baked circular border). Khushi is fine — do not change her photo or `imgStyle`.
 
 ### MEDIUM PRIORITY
 5. **Profile photo crop fine-tuning** — Current: `scale(1.85), transformOrigin: center 71%`. If head looks slightly off in browser, adjust: lower `%` → shows higher in photo, higher `%` → shows lower. Keep scale between 1.7–2.0.
@@ -317,3 +354,14 @@ npm run deploy     # build + push to gh-pages branch → live at neeraj12-byte.g
   1. Color palette switched from Terracotta & Ivory → Bronze & Cream (`#F8F4E8` + `#A07640`) — user felt original was too similar to abishekgirish.com
   2. Profile photo crop fixed — `scale(1.85) transformOrigin: center 71%` — shows head+chest like LinkedIn headshot
   3. Testimonials section redesigned to match reference image (single full-width card, "Testimonials" serif heading with bronze underline + subtitle, `"` + left border on quote, dots + arrows nav)
+- **Session 4 (July 13)**: Polish pass — all changes committed and pushed to main (branch is ahead of deployment):
+  1. Real image logos added for Apple, OLA Electric, Purdue, BITS Pilani across Experience cards and Hero strip
+  2. Hero logo strip built with `LogoChip` inline component — real logos with proper backgrounds, ring borders, larger fonts
+  3. Two availability pills added to Hero (Internship + Full-time)
+  4. Em dashes removed site-wide, replaced with commas
+  5. Email updated to neeraj.karumanchi12@gmail.com in Contact + Footer
+  6. Testimonials: Embla carousel removed, replaced with `useState` + `AnimatePresence`; real profile photos added for all 4 people
+  7. AI skills bronze tint removed (`aiHighlights = new Set()`) — all skill pills now uniform
+  8. Testimonials container widened to `max-w-6xl`, quote font increased to `text-lg sm:text-xl`
+  9. Arnav/Vishesh/Gandhee testimonial quotes expanded to ~3 lines for visual consistency
+  10. Known open issue: Arnav/Vishesh/Gandhee avatar PNGs have baked-in black circular border — needs clean source images to fix properly
