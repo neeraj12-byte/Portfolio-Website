@@ -20,7 +20,7 @@ export default function Footer() {
             LinkedIn
           </a>
           <a
-            href="mailto:neeraj.karumanchi25@gmail.com"
+            href="mailto:neeraj.karumanchi12@gmail.com"
             className="font-sans text-xs text-white/40 hover:text-white/70 transition-colors py-3 px-1"
           >
             Email

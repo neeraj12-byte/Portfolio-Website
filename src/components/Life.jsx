@@ -20,7 +20,7 @@ export default function Life() {
         <SectionHeading label="Life" title="Beyond the brief." />
         <FadeIn delay={0.05}>
           <p className="font-sans text-base text-[#6B6B6B] mb-12 max-w-xl">
-            11 US states in under a year. Always learning, always moving — on a court, in the water, or at a new city.
+            11 US states in under a year. Always learning, always moving, on a court, in the water, or at a new city.
           </p>
         </FadeIn>
 

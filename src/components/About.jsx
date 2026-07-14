@@ -6,7 +6,7 @@ const hobbies = [
   {
     Icon: Plane,
     label: '11 US States',
-    sub: 'in under a year — and counting',
+    sub: 'in under a year, and counting',
   },
   {
     Icon: Trophy,
@@ -49,7 +49,7 @@ export default function About() {
                 <p>
                   I graduated from{' '}
                   <span className="text-[#1C1C1E] font-medium">BITS Pilani</span>{' '}
-                  in 2022 with a hardware degree and a software mindset — and a growing itch to work on the thing between the two: the program.
+                  in 2022 with a hardware degree and a software mindset, and a growing itch to work on the thing between the two: the program.
                 </p>
                 <p>
                   Three years at{' '}
@@ -59,12 +59,12 @@ export default function About() {
                 <p>
                   Then came{' '}
                   <span className="text-[#1C1C1E] font-medium">Purdue</span>{' '}
-                  — a chance to build the strategic layer. How to think about systems, not just execute inside them. And now I'm here at{' '}
+                  , a chance to build the strategic layer. How to think about systems, not just execute inside them. And now I'm here at{' '}
                   <span className="text-[#1C1C1E] font-medium">Apple in Cupertino</span>
                   , running Pricing Platform programs and shipping AI agents that actually work.
                 </p>
                 <p>
-                  Outside work, I run the same playbook I use at a poker table: read the table, manage risk, and make decisions with incomplete information. I play basketball (school team back in the day), travel every chance I get — 11 states in under a year — and yes, I've gone scuba diving. Quietest place I've ever been.
+                  Outside work, I run the same playbook I use at a poker table: read the table, manage risk, and make decisions with incomplete information. I play basketball (school team back in the day), travel every chance I get, 11 states in under a year, and yes, I've gone scuba diving. Quietest place I've ever been.
                 </p>
               </div>
             </FadeIn>

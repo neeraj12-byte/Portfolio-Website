@@ -28,10 +28,10 @@ export default function Contact() {
               LinkedIn ↗
             </a>
             <a
-              href="mailto:neeraj.karumanchi25@gmail.com"
+              href="mailto:neeraj.karumanchi12@gmail.com"
               className="inline-flex items-center gap-2 border border-white/20 text-white font-sans text-sm font-medium px-6 py-3 rounded-full hover:border-white/50 transition-colors"
             >
-              neeraj.karumanchi25@gmail.com
+              neeraj.karumanchi12@gmail.com
             </a>
             <a
               href="/Portfolio-Website/Neeraj%20Karumanchi.pdf"

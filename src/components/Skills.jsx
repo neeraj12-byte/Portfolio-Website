@@ -2,8 +2,7 @@ import SectionHeading from './SectionHeading'
 import FadeIn from './FadeIn'
 import { skills } from '../data/skills'
 
-// These AI skills get a terracotta tint to signal they're the standout capability
-const aiHighlights = new Set(['Claude Code', 'Agentic AI', 'MCP Servers'])
+const aiHighlights = new Set()
 
 export default function Skills() {
   return (

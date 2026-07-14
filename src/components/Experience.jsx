@@ -1,5 +1,6 @@
 import SectionHeading from './SectionHeading'
 import FadeIn from './FadeIn'
+import CompanyLogo from '../assets/logos/CompanyLogo'
 import { primaryExperience, secondaryExperience } from '../data/experience'
 
 export default function Experience() {
@@ -23,19 +24,22 @@ export default function Experience() {
 
                 {/* Card */}
                 <div className="bg-[#F8F4E8] rounded-2xl p-6 sm:p-7">
-                  {/* Header — stacks on mobile */}
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4 mb-1">
-                    <div>
-                      <h3 className="font-serif text-2xl font-semibold text-[#1C1C1E]">
-                        {job.company}
-                      </h3>
-                      <p className="font-sans text-sm font-medium text-[#A07640] mt-0.5">
-                        {job.role}
-                      </p>
-                    </div>
-                    <div className="sm:text-right flex-shrink-0">
-                      <p className="font-sans text-sm text-[#6B6B6B]">{job.period}</p>
-                      <p className="font-sans text-xs text-[#6B6B6B] mt-0.5">{job.location}</p>
+                  {/* Header with logo */}
+                  <div className="flex items-start gap-4 mb-1">
+                    {job.logo && <CompanyLogo name={job.logo} size="md" />}
+                    <div className="flex-1 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-4">
+                      <div>
+                        <h3 className="font-serif text-2xl font-semibold text-[#1C1C1E]">
+                          {job.company}
+                        </h3>
+                        <p className="font-sans text-sm font-medium text-[#A07640] mt-0.5">
+                          {job.role}
+                        </p>
+                      </div>
+                      <div className="sm:text-right flex-shrink-0">
+                        <p className="font-sans text-sm text-[#6B6B6B]">{job.period}</p>
+                        <p className="font-sans text-xs text-[#6B6B6B] mt-0.5">{job.location}</p>
+                      </div>
                     </div>
                   </div>
 
@@ -97,12 +101,15 @@ export default function Experience() {
                 key={job.company}
                 className="border border-[#1C1C1E]/10 rounded-2xl p-5 hover:border-[#1C1C1E]/20 transition-colors"
               >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-2 mb-2">
-                  <div>
-                    <p className="font-sans text-sm font-semibold text-[#1C1C1E]">{job.company}</p>
+                <div className="flex items-start gap-3 mb-2">
+                  {job.logo && <CompanyLogo name={job.logo} size="sm" />}
+                  <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-0.5 sm:gap-2">
+                      <p className="font-sans text-sm font-semibold text-[#1C1C1E]">{job.company}</p>
+                      <p className="font-sans text-xs text-[#6B6B6B] sm:text-right flex-shrink-0">{job.period}</p>
+                    </div>
                     <p className="font-sans text-xs text-[#A07640] mt-0.5">{job.role}</p>
                   </div>
-                  <p className="font-sans text-xs text-[#6B6B6B] sm:text-right flex-shrink-0">{job.period}</p>
                 </div>
                 <p className="font-sans text-xs text-[#6B6B6B] leading-relaxed">{job.description}</p>
               </div>

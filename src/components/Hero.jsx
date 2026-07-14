@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion'
 import profilePhoto from '../../Photos/Professional_photo_web.jpg'
+import appleLogo from '../assets/logos/apple-logo.jpg'
+import olaLogo from '../assets/logos/ola-logo.png'
+import purdueLog from '../assets/logos/purdue-logo.png'
+import bitsLogo from '../assets/logos/bits-logo.webp'
 
 export default function Hero() {
   return (
@@ -12,17 +16,25 @@ export default function Hero() {
 
           {/* Left — Text */}
           <div className="flex-1 text-center md:text-left">
-            {/* Availability pill */}
+            {/* Availability pills */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.05 }}
-              className="inline-flex items-center gap-2 bg-[#059669]/10 border border-[#059669]/20 rounded-full px-3 py-1.5 mb-5"
+              className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-5"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
-              <span className="font-sans text-xs font-medium text-[#059669]">
-                Seeking Fall 2026 Internship
-              </span>
+              <div className="inline-flex items-center gap-2 bg-[#059669]/10 border border-[#059669]/20 rounded-full px-3 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
+                <span className="font-sans text-xs font-medium text-[#059669]">
+                  Seeking Fall 2026 Internships
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-[#059669]/10 border border-[#059669]/20 rounded-full px-3 py-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
+                <span className="font-sans text-xs font-medium text-[#059669]">
+                  Seeking Full-time Job Opportunities
+                </span>
+              </div>
             </motion.div>
 
             <motion.h1
@@ -38,7 +50,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.25 }}
-              className="font-sans text-sm text-[#6B6B6B] mb-6"
+              className="font-sans text-[17px] text-[#6B6B6B] mb-6"
             >
               EPM Intern · Apple · Cupertino, CA
             </motion.p>
@@ -50,8 +62,8 @@ export default function Hero() {
               className="font-sans text-base md:text-lg text-[#6B6B6B] leading-relaxed max-w-lg mx-auto md:mx-0 mb-10"
             >
               I run programs that ship. From India's fastest-growing EV startup to{' '}
-              <span className="text-[#1C1C1E] font-medium">Apple's Pricing Platform</span>{' '}
-              — turning complex, multi-team work into{' '}
+              <span className="text-[#1C1C1E] font-medium">Apple's Pricing Platform</span>
+              , turning complex, multi-team work into{' '}
               <span className="text-[#1C1C1E] font-medium">outcomes that actually land</span>.
             </motion.p>
 
@@ -103,19 +115,19 @@ export default function Hero() {
         >
           <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-8">
             <div className="flex items-center gap-5 flex-wrap">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6B6B6B]/60">
+              <span className="font-sans text-[15px] font-semibold uppercase tracking-[0.18em] text-[#6B6B6B]/80">
                 Worked at
               </span>
-              <LogoChip name="Apple" />
-              <LogoChip name="OLA Electric" />
+              <LogoChip name="Apple" logo={appleLogo} />
+              <LogoChip name="OLA Electric" logo={olaLogo} />
             </div>
-            <div className="hidden sm:block w-px h-5 bg-[#1C1C1E]/12" />
+            <div className="hidden sm:block w-px h-6 bg-[#1C1C1E]/12" />
             <div className="flex items-center gap-5 flex-wrap">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-[#6B6B6B]/60">
+              <span className="font-sans text-[15px] font-semibold uppercase tracking-[0.18em] text-[#6B6B6B]/80">
                 Studied at
               </span>
-              <LogoChip name="Purdue University" />
-              <LogoChip name="BITS Pilani" />
+              <LogoChip name="Purdue University" logo={purdueLog} logoBg="#000000" />
+              <LogoChip name="BITS Pilani" logo={bitsLogo} />
             </div>
           </div>
         </motion.div>
@@ -124,10 +136,21 @@ export default function Hero() {
   )
 }
 
-function LogoChip({ name }) {
+function LogoChip({ name, logo, square = true, logoBg = '#ffffff' }) {
   return (
-    <span className="font-serif text-lg md:text-xl font-semibold text-[#1C1C1E]/70 tracking-tight hover:text-[#1C1C1E] transition-colors duration-200 cursor-default">
-      {name}
-    </span>
+    <div className="flex items-center gap-2 cursor-default group">
+      {logo && (
+        <img
+          src={logo}
+          alt=""
+          aria-hidden="true"
+          style={{ backgroundColor: logoBg }}
+          className={`h-[23px] md:h-[27px] rounded-[5px] object-contain flex-shrink-0 ring-1 ring-[#1C1C1E]/10 ${square ? 'w-[23px] md:w-[27px]' : 'w-auto'}`}
+        />
+      )}
+      <span className="font-serif text-[23px] md:text-[27px] font-semibold text-[#1C1C1E]/70 tracking-tight group-hover:text-[#1C1C1E] transition-colors duration-200">
+        {name}
+      </span>
+    </div>
   )
 }

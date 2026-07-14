@@ -3,7 +3,7 @@ export const highlights = [
     type: 'ACHIEVEMENT',
     year: '2025',
     title: '$2.8M Saved',
-    description: 'Built OLA\'s first in-house ABS system from scratch — removing a $2.8M vendor dependency and hitting 99.2% reliability.',
+    description: 'Built OLA\'s first in-house ABS system from scratch, removing a $2.8M vendor dependency and hitting 99.2% reliability.',
   },
   {
     type: 'SCALE',
@@ -21,7 +21,7 @@ export const highlights = [
     type: 'PROGRAM',
     year: '2026',
     title: '15+ Programs',
-    description: 'Managing Apple\'s Pricing Platform portfolio — 30+ stakeholders, 70+ active work items, zero dropped balls.',
+    description: 'Managing Apple\'s Pricing Platform portfolio, 30+ stakeholders, 70+ active work items, zero dropped balls.',
   },
   {
     type: 'AI',
@@ -33,6 +33,6 @@ export const highlights = [
     type: 'AWARD',
     year: '2023',
     title: 'Top New Hire',
-    description: 'Won OLA Electric\'s Outstanding New Hire Award for shipping MOVE OS 3 — 88% adoption across 1M+ customers in year one.',
+    description: 'Won OLA Electric\'s Outstanding New Hire Award for shipping MOVE OS 3, 88% adoption across 1M+ customers in year one.',
   },
 ]

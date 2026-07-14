@@ -1,5 +1,6 @@
 import SectionHeading from './SectionHeading'
 import FadeIn from './FadeIn'
+import CompanyLogo from '../assets/logos/CompanyLogo'
 
 const education = [
   {
@@ -9,7 +10,7 @@ const education = [
     gpa: 'GPA: 3.86',
     location: 'West Lafayette, IN',
     note: 'Top 10 Engineering School in the US',
-    badge: { letter: 'P', color: 'bg-[#CFB991]', text: 'text-[#1C1C1E]' },
+    logo: 'purdue',
     coursework: ['Technical Program Management', 'Project Management', 'Supply Chain Engineering', 'Systems Thinking', 'Change Management', 'Applied Ergonomics', 'Student Consulting'],
   },
   {
@@ -18,10 +19,10 @@ const education = [
     period: 'Aug 2018 – May 2022',
     gpa: '',
     location: 'Pilani, India',
-    note: "India's MIT equivalent — entrance tougher than IIT in many disciplines",
-    badge: { letter: 'B', color: 'bg-[#003366]', text: 'text-white' },
+    note: "India's MIT equivalent, entrance tougher than IIT in many disciplines",
+    logo: 'bits',
     coursework: ['Digital Signal Processing', 'Control Systems', 'Microprocessors', 'VLSI Design', 'Probability & Statistics'],
-    activity: 'Dance Club Coordinator — negotiated INR 75K budget and drove 75% increase in event participation.',
+    activity: 'Dance Club Coordinator, negotiated INR 75K budget and drove 75% increase in event participation.',
   },
 ]
 
@@ -34,13 +35,13 @@ export default function Education() {
           {education.map((edu, i) => (
             <FadeIn key={edu.school} delay={i * 0.1}>
               <div className="bg-[#F8F4E8] rounded-2xl p-8 h-full border border-[#1C1C1E]/8 hover:border-[#1C1C1E]/18 hover:shadow-sm transition-all duration-200">
-                <div className="flex items-start justify-between mb-4">
-                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-[#A07640] max-w-[75%] leading-relaxed">
+
+                {/* Logo + note row */}
+                <div className="flex items-start justify-between mb-5">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-[#A07640] max-w-[70%] leading-relaxed">
                     {edu.note}
                   </p>
-                  <div className={`w-9 h-9 rounded-lg ${edu.badge.color} flex items-center justify-center flex-shrink-0 ml-3`}>
-                    <span className={`font-serif font-bold text-base ${edu.badge.text}`}>{edu.badge.letter}</span>
-                  </div>
+                  <CompanyLogo name={edu.logo} size="md" />
                 </div>
 
                 <h3 className="font-serif text-3xl font-semibold text-[#1C1C1E] mb-1">

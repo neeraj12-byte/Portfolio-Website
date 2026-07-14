@@ -10,7 +10,7 @@ export default function Certifications() {
 
         <FadeIn delay={0.05}>
           <p className="font-sans text-sm text-[#6B6B6B] -mt-8 mb-12 max-w-2xl leading-relaxed">
-            Anthropic certifications are among the first issued — less than a year old. These aren't box-ticking; they're a direct signal of where I spend my learning time.
+            Anthropic certifications are among the first issued, less than a year old. These aren't box-ticking; they're a direct signal of where I spend my learning time.
           </p>
         </FadeIn>
 
