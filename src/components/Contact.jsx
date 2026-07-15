@@ -34,7 +34,7 @@ export default function Contact() {
               neeraj.karumanchi12@gmail.com
             </a>
             <a
-              href="/Portfolio-Website/Neeraj%20Karumanchi.pdf"
+              href="/Neeraj%20Karumanchi.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans text-sm text-white/50 hover:text-white underline underline-offset-4 transition-colors px-2 py-3"
