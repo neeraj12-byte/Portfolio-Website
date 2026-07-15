@@ -1,6 +1,6 @@
 # Portfolio Website — Project Context
 > Read this file at the start of any session to restore full context.
-> Last updated: July 13, 2026
+> Last updated: July 14, 2026
 
 ---
 
@@ -22,17 +22,19 @@ A **personal brand portfolio website** — not just a resume in HTML. It tells t
 
 ---
 
-## Current Build Status: LIVE (dev server works, production build clean)
+## Current Build Status: LIVE AND DEPLOYED
 All 12 sections built and rendering. Run `npm run dev` to preview locally.
-Deploy: `npm run deploy` → pushes to gh-pages branch → live at `neeraj12-byte.github.io/Portfolio-Website/`
+**Live URL**: `https://neeraj12-byte.github.io` (no path suffix)
+Deploy: `npm run deploy` → builds → pushes to `gh-pages` branch → live in ~1-2 min
+**Important**: pushing to `main` alone does NOT update the live site — must run `npm run deploy` separately.
 
 ---
 
 ## Tech Stack
-- **React + Vite** (type: module, vite.config.js has base: '/Portfolio-Website/')
+- **React + Vite** (type: module, vite.config.js has `base: '/'`)
 - **Tailwind CSS v4** (`@tailwindcss/vite` plugin)
 - **Framer Motion** (scroll-triggered fade-ins, SectionHeading underline animation)
-- **Embla Carousel** (testimonials)
+- **useState + AnimatePresence** (testimonials carousel — Embla was removed)
 - **Lucide React** (icons in About hobby tiles + Project card covers)
 - **gh-pages** npm package for deployment
 - Node v26.4.0, npm v11 (installed via Homebrew at `/opt/homebrew/bin/`)
@@ -301,14 +303,11 @@ Portfolio-Website/
 ## What's Still Pending / Not Done Yet
 
 ### HIGH PRIORITY
-1. **OG image** — `index.html` references `/Portfolio-Website/og-image.jpg` which doesn't exist. Create a 1200×630px JPG in Figma/Canva (golden cream bg `#F8F4E8`, serif name left, profile photo right, bronze accent `#A07640`) and place in `/public/og-image.jpg`. Without it, LinkedIn/WhatsApp share previews will be broken.
+1. **OG image** — `index.html` references `/og-image.jpg` which doesn't exist. Create a 1200×630px JPG in Figma/Canva (golden cream bg `#F8F4E8`, serif name left, profile photo right, bronze accent `#A07640`) and place in `/public/og-image.jpg`. Without it, LinkedIn/WhatsApp share previews will be broken.
 
-2. **Deploy to GitHub Pages** — Code is committed and pushed to main. Run deploy when ready:
-   Command: `export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" && npm run deploy`
+2. **Testimonials LinkedIn URLs** — All `linkedin:` fields in `src/data/testimonials.js` are empty strings. Fill in each recommender's LinkedIn profile URL so the `in →` pill button appears.
 
-3. **Testimonials LinkedIn URLs** — All `linkedin:` fields in `src/data/testimonials.js` are empty strings. Fill in each recommender's LinkedIn profile URL so the `in →` pill button appears.
-
-4. **Testimonial avatar photos (Arnav, Vishesh, Gandhee)** — Current PNGs have a black circular border baked into the image file. With `object-cover`, this border bleeds in unevenly. Fix: replace with versions that have transparent or white background (no pre-baked circular border). Khushi is fine — do not change her photo or `imgStyle`.
+3. **Testimonial avatar photos (Arnav, Vishesh, Gandhee)** — Current PNGs have a black circular border baked into the image file. With `object-cover`, this border shows unevenly as a dark ring. Fix: replace with versions that have a transparent or white background (no pre-baked circular border). Khushi is confirmed perfect — do not change her photo or `imgStyle`.
 
 ### MEDIUM PRIORITY
 5. **Profile photo crop fine-tuning** — Current: `scale(1.85), transformOrigin: center 71%`. If head looks slightly off in browser, adjust: lower `%` → shows higher in photo, higher `%` → shows lower. Keep scale between 1.7–2.0.
@@ -340,10 +339,16 @@ Portfolio-Website/
 # PATH needed every session (node not in default shell PATH):
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
-npm run dev        # local dev server at localhost:5173/Portfolio-Website/
+npm run dev        # local dev server at localhost:5173
 npm run build      # production build to dist/
-npm run deploy     # build + push to gh-pages branch → live at neeraj12-byte.github.io/Portfolio-Website/
+npm run deploy     # build + push to gh-pages branch → live at neeraj12-byte.github.io
 ```
+
+## Git Remote
+```
+git remote: git@github.com:neeraj12-byte/neeraj12-byte.github.io.git
+```
+Repo was renamed from `Portfolio-Website` → `neeraj12-byte.github.io` on July 14 so the live URL has no path suffix. Do NOT change the GitHub username (`neeraj12-byte`) — user decided to keep it.
 
 ---
 
@@ -365,3 +370,11 @@ npm run deploy     # build + push to gh-pages branch → live at neeraj12-byte.g
   8. Testimonials container widened to `max-w-6xl`, quote font increased to `text-lg sm:text-xl`
   9. Arnav/Vishesh/Gandhee testimonial quotes expanded to ~3 lines for visual consistency
   10. Known open issue: Arnav/Vishesh/Gandhee avatar PNGs have baked-in black circular border — needs clean source images to fix properly
+- **Session 5 (July 14)**: Deployment:
+  1. Deployed site to GitHub Pages for the first time via `npm run deploy`
+  2. Renamed repo from `Portfolio-Website` → `neeraj12-byte.github.io` so URL is clean: `https://neeraj12-byte.github.io`
+  3. Updated `vite.config.js` base from `'/Portfolio-Website/'` → `'/'`
+  4. Updated resume href in `Contact.jsx` from `'/Portfolio-Website/Neeraj%20Karumanchi.pdf'` → `'/Neeraj%20Karumanchi.pdf'`
+  5. Updated git remote to `git@github.com:neeraj12-byte/neeraj12-byte.github.io.git`
+  6. Decided NOT to change GitHub username to `neerajkarumanchi` — keeping `neeraj12-byte`
+  7. Future option: add custom domain (e.g. `neerajkarumanchi.com`) pointing to GitHub Pages
